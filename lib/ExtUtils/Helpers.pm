@@ -69,7 +69,7 @@ sub pl2bat {
   $opts{ntargs}    = '-x -S %0 %*';
   $opts{otherargs} = '-x -S "%0" %1 %2 %3 %4 %5 %6 %7 %8 %9';
 
-  $opts{stripsuffix} = qr/\\.plx?/' unless exists $opts{stripsuffix};
+  $opts{stripsuffix} = qr/\\.plx?/ unless exists $opts{stripsuffix};
 
   unless (exists $opts{out}) {
     $opts{out} = $opts{in};
