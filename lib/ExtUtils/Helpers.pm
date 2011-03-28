@@ -19,8 +19,10 @@ sub _make_executable {
 if ($^O ne 'MSWin32') {
 	eval <<'EOF';
 use Text::ParseWords 3.24 qw/shellwords/;
+use ExtUtils::MakeMaker;
 
 sub make_executable {
+	ExtUtils::MM->fixin($_) for grep { -T } @_;
 	goto &_make_executable
 };
 
