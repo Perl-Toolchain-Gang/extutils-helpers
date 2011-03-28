@@ -210,6 +210,8 @@ sub build_script {
 =head1 SYNOPSIS
 
  use ExtUtils::Helpers qw/build_script make_executable split_like_shell/;
+
+ unshift @ARGV, split_like_shell($ENV{PROGRAM_OPTS});
  write_script_to(build_script());
  make_executable(build_script());
 
