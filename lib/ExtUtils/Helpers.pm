@@ -18,7 +18,7 @@ sub _make_executable {
 
 if ($^O ne 'MSWin32') {
 	eval <<'EOF';
-use Text::ParseWords qw/shellwords/;
+use Text::ParseWords 3.24 qw/shellwords/;
 
 sub make_executable {
 	goto &_make_executable
