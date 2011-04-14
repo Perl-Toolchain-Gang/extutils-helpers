@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.002     2011-04-14 14:45:27 Europe/Amsterdam
           Fixed compilation and other issues on Windows
 
 0.001     2011-03-28 14:59:00 Europe/Amsterdam
