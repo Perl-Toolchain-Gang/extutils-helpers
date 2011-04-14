@@ -29,4 +29,4 @@ SKIP: {
 	is $ret, 0, 'test_exec.bat executed successfully';
 }
 
-unlink 'test_exec.pl'
+unlink 'test_exec.pl', 'test_exec.bat'
