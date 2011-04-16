@@ -160,12 +160,12 @@ sub split_like_shell {
   return @argv unless defined && length;
 
   my $arg = '';
-  my( $i, $quote_mode ) = ( 0, 0 );
+  my ($i, $quote_mode ) = ( 0, 0 );
 
-  while ( $i < length() ) {
+  while ( $i < length ) {
 
-    my $ch      = substr( $_, $i  , 1 );
-    my $next_ch = substr( $_, $i+1, 1 );
+    my $ch      = substr $_, $i  , 1;
+    my $next_ch = substr $_, $i+1, 1;
 
     if ( $ch eq '\\' && $next_ch eq '"' ) {
       $arg .= '"';
@@ -181,13 +181,13 @@ sub split_like_shell {
 	      ( $i + 2 == length()  ||
 		substr( $_, $i + 2, 1 ) eq ' ' )
 	    ) { # for cases like: a"" => [ 'a' ]
-      push( @argv, $arg );
+      push @argv, $arg;
       $arg = '';
       $i += 2;
     } elsif ( $ch eq '"' ) {
       $quote_mode = !$quote_mode;
     } elsif ( $ch eq ' ' && !$quote_mode ) {
-      push( @argv, $arg ) if $arg;
+      push @argv, $arg if $arg;
       $arg = '';
       ++$i while substr( $_, $i + 1, 1 ) eq ' ';
     } else {
@@ -197,7 +197,7 @@ sub split_like_shell {
     $i++;
   }
 
-  push( @argv, $arg ) if defined( $arg ) && length( $arg );
+  push @argv, $arg if defined $arg && length $arg;
   return @argv;
 }
 EOF
