@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Added man1_pagename and man3_pagename
 
 0.002     2011-04-14 14:45:27 Europe/Amsterdam
           Fixed compilation and other issues on Windows
