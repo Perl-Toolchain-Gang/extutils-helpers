@@ -211,7 +211,7 @@ sub build_script {
 
 sub man1_pagename {
 	my $filename = shift;
-	return basename($filename).".1";
+	return basename($filename).'.1';
 }
 
 my %separator = (
@@ -228,7 +228,7 @@ sub man3_pagename {
 	my @dirs = grep { length } splitdir($dirs);
 	shift @dirs if $dirs[0] eq 'lib';
 	my $separator = $separator{$^O} || '::';
-	return join $separator, @dirs, "$file.3";
+	return join $separator, @dirs, "$file.3pm";
 }
 
 sub manify {
@@ -279,5 +279,5 @@ Returns the man page filename for a Perl library.
 
 =func manify($input_filename, $output_file, $section, $opts)
 
-Create a manpage for the script in C<$input_filename> as C<$output_file> in section C<$section)
+Create a manpage for the script in C<$input_filename> as C<$output_file> in section C<$section>
 

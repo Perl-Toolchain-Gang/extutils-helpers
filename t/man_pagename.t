@@ -16,6 +16,6 @@ my $sep = $separator{$^O} || '::';
 
 is man1_pagename('script/foo'), 'foo.1', 'man1_pagename';
 
-is man3_pagename(catfile(qw/lib ExtUtils Helpers.pm/)), join($sep, qw/ExtUtils Helpers.3/), 'man3_pagename';
+is man3_pagename(catfile(qw/lib ExtUtils Helpers.pm/)), join($sep, qw/ExtUtils Helpers.3pm/), 'man3_pagename';
 
 done_testing;

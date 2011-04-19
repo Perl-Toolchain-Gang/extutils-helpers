@@ -20,7 +20,7 @@ make_executable($filename);
 	my $cwd = cwd;
 	local $ENV{PATH} = join $Config{path_sep}, $cwd, $ENV{PATH};
 	my $ret = system $filename;
-	is $ret, 0, 'test_exec executed successfully';
+	is $ret, 0, 'test_exec.pl executed successfully';
 }
 
 SKIP: {
