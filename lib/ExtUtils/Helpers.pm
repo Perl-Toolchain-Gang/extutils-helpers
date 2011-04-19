@@ -3,10 +3,12 @@ use strict;
 use warnings;
 use Exporter 5.57 'import';
 
-use File::Basename;
+use File::Basename qw/basename dirname/;
+use File::Path qw/mkpath/;
 use File::Spec::Functions qw/splitpath splitdir canonpath/;
+use Pod::Man;
 
-our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename/;
+our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename manify man3_pagename/;
 
 sub _make_executable {
   # Perl's chmod() is mapped to useful things on various non-Unix
@@ -229,6 +231,15 @@ sub man3_pagename {
 	return join $separator, @dirs, "$file.3";
 }
 
+sub manify {
+	my ($input_file, $output_file, $section, $opts) = @_;
+	my $dirname = dirname($output_file);
+	mkpath($dirname, $opts->{verbose}) if not -d $dirname;
+	Pod::Man->new(section => $section)->parse_from_file($input_file, $output_file);
+	print "Manifying $output_file\n" if $opts->{verbose} > 0;
+	return;
+}
+
 # ABSTRACT: Various portability utilities for module builders
 1;
 
@@ -265,3 +276,8 @@ Returns the man page filename for a script.
 =func man3_pagename($filename)
 
 Returns the man page filename for a Perl library.
+
+=func manify($input_filename, $output_file, $section, $opts)
+
+Create a manpage for the script in C<$input_filename> as C<$output_file> in section C<$section)
+

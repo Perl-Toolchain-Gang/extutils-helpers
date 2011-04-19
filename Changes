@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Added manify
 
 0.003     2011-04-16 15:52:51 Europe/Amsterdam
           Added man1_pagename and man3_pagename
