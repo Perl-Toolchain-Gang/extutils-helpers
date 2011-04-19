@@ -236,7 +236,7 @@ sub manify {
 	my $dirname = dirname($output_file);
 	mkpath($dirname, $opts->{verbose}) if not -d $dirname;
 	Pod::Man->new(section => $section)->parse_from_file($input_file, $output_file);
-	print "Manifying $output_file\n" if $opts->{verbose} > 0;
+	print "Manifying $output_file\n" if $opts->{verbose} && $opts->{verbose} > 0;
 	return;
 }
 
