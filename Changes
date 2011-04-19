@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.005     2011-04-20 00:05:13 Europe/Amsterdam
           Fixed definedness issue in manify
 
 0.004     2011-04-19 23:04:53 Europe/Amsterdam
