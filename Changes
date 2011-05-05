@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Made split_like_shell handle newlines and tabs on Windows
 
 0.005     2011-04-20 00:05:13 Europe/Amsterdam
           Fixed definedness issue in manify

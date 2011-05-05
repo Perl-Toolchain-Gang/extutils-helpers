@@ -26,6 +26,7 @@ my @win_splits =
    { 'a"\\"b" "a\\"b'       => [ 'a"b', 'a"b'    ] },
    { 'a"\\"b"  "a\\"b'      => [ 'a"b', 'a"b'    ] },
    { 'a           b'        => [ 'a', 'b'        ] },
+   { "a\nb"                 => [ 'a', 'b'        ] },
    { 'a"\\"b a\\"b'         => [ 'a"b a"b'       ] },
    { '"a""b" "a"b"'         => [ 'a"b ab'        ] },
    { '\\"a\\"'              => [ '"a"'           ] },
@@ -75,7 +76,8 @@ sub do_split_tests {
 
 	my ($string, $expected) = %$test;
 	my @result = split_like_shell($string);
-	is(grep( !defined(), @result ), 0, "'$string' result all defined");
+	$string =~ s/\n/\\n/g;
+	is(grep( !defined(), @result ), 0, "\"$string\" result all defined");
 	is_deeply(\@result, $expected) or
 	diag("split_like_shell error \n>$string< is not splitting as >" . join("|", @$expected) . '<');
 }

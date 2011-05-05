@@ -10,7 +10,7 @@ use Cwd qw/cwd/;
 
 my $filename = 'test_exec.pl';
 
-open my $out, '>', $filename;
+open my $out, '>', $filename or die "Couldn't create $filename: $!";
 print $out "#! perl \nexit 0;\n";
 close $out;
 

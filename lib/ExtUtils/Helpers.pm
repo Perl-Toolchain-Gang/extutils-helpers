@@ -188,10 +188,10 @@ sub split_like_shell {
       $i += 2;
     } elsif ( $ch eq '"' ) {
       $quote_mode = !$quote_mode;
-    } elsif ( $ch eq ' ' && !$quote_mode ) {
+    } elsif ( $ch =~ /\s/ && !$quote_mode ) {
       push @argv, $arg if $arg;
       $arg = '';
-      ++$i while substr( $_, $i + 1, 1 ) eq ' ';
+      ++$i while substr( $_, $i + 1, 1 ) =~ /\s/;
     } else {
       $arg .= $ch;
     }
