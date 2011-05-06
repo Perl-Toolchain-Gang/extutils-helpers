@@ -8,7 +8,7 @@ use Test::More tests => 2;
 use ExtUtils::Helpers qw/make_executable/;
 use Cwd qw/cwd/;
 
-my $filename = 'test_exec.pl';
+my $filename = 'test_exec';
 
 open my $out, '>', $filename or die "Couldn't create $filename: $!";
 print $out "#! perl \nexit 0;\n";
@@ -20,7 +20,7 @@ make_executable($filename);
 	my $cwd = cwd;
 	local $ENV{PATH} = join $Config{path_sep}, $cwd, $ENV{PATH};
 	my $ret = system $filename;
-	is $ret, 0, 'test_exec.pl executed successfully';
+	is $ret, 0, 'test_exec executed successfully';
 }
 
 SKIP: {
