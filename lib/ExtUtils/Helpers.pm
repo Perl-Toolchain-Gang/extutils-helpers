@@ -63,15 +63,14 @@ sub make_executable {
   }
 }
 
-# This routine was copied almost verbatim from the 'pl2bat' utility
-# distributed with perl. It requires too much voodoo with shell quoting
-# differences and shortcomings between the various flavors of Windows
-# to reliably shell out
+# Inspired from pl2bat, but fixed:
+# - to preserve exit code
+# - to pass the absolute path to perl
 sub _pl2bat {
   my %opts = @_;
 
   # NOTE: %0 is already enclosed in doublequotes by cmd.exe, as appropriate
-  $opts{ntargs}    = '-x -S %0 %*';
+  $opts{ntargs}    = '-x "%~0" %*';
   $opts{otherargs} = '-x -S "%0" %1 %2 %3 %4 %5 %6 %7 %8 %9';
 
   $opts{stripsuffix} = qr/\.plx?/ unless exists $opts{stripsuffix};
@@ -90,10 +89,9 @@ sub _pl2bat {
     goto endofperl
     :WinNT
     perl $opts{ntargs}
-    if NOT "%COMSPEC%" == "%SystemRoot%\\system32\\cmd.exe" goto endofperl
-    if %errorlevel% == 9009 echo You do not have Perl in your PATH.
-    if errorlevel 1 goto script_failed_so_exit_with_non_zero_val 2>nul
-    goto endofperl
+    if %errorlevel% == 9009 echo You do not have Perl in your PATH.>&2
+    if %CMDEXTVERSION%0 GEQ 10 exit /B %errorlevel%
+    goto :EOF
     \@rem ';
 EOT
 
