@@ -65,11 +65,12 @@ sub make_executable {
 
 # Inspired from pl2bat, but fixed:
 # - to preserve exit code
+# - to pass the absolute path to perl
 sub _pl2bat {
   my %opts = @_;
 
   # NOTE: %0 is already enclosed in doublequotes by cmd.exe, as appropriate
-  $opts{ntargs}    = '-x -S %0 %*';
+  $opts{ntargs}    = '-x "%~0" %*';
   $opts{otherargs} = '-x -S "%0" %1 %2 %3 %4 %5 %6 %7 %8 %9';
 
   $opts{stripsuffix} = qr/\.plx?/ unless exists $opts{stripsuffix};
