@@ -174,3 +174,14 @@ sub split_like_shell {
 }
 
 1;
+
+# ABSTRACT: Windows specific helper bits
+
+=begin Pod::Coverage
+
+make_executable
+split_like_shell
+
+=end Pod::Coverage
+
+=cut

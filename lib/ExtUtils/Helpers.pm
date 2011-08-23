@@ -52,10 +52,11 @@ sub manify {
 	return;
 }
 
-# ABSTRACT: Various portability utilities for module builders
 1;
 
 __END__
+
+# ABSTRACT: Various portability utilities for module builders
 
 =head1 SYNOPSIS
 
@@ -93,3 +94,4 @@ Returns the man page filename for a Perl library.
 
 Create a manpage for the script in C<$input_filename> as C<$output_file> in section C<$section>
 
+=cut
