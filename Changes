@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Split out Windows and Unix specific parts
+          Use $Config{path_sep} in tests
 
 0.007     2011-05-07 10:59:15 Europe/Amsterdam
           Fixes for make_executable.t and make_executable
