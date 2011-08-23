@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.008     2011-08-23 17:09:37 Europe/Amsterdam
           Split out Windows and Unix specific parts
           Use $Config{path_sep} in tests
 
