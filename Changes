@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.009     2011-08-24 17:30:00 Europe/Amsterdam
           Fixed failing test on Windows
 
 0.008     2011-08-23 17:09:37 Europe/Amsterdam
