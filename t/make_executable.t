@@ -27,7 +27,7 @@ foreach my $i (42, 51, 0) {
 
 SKIP: {
 	skip 'No batch file on non-windows', 1 if $^O ne 'MSWin32';
-	push @files, grep { -f } map { $filename.$_ } split / \Q $Config{path_sep} \E /x, $ENV{PATHEXT};
+	push @files, grep { -f } map { $filename.$_ } split / $Config{path_sep} /x, $ENV{PATHEXT};
 	is scalar(@files), 1, "Executable file exists";
 }
 
