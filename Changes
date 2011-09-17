@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Fixed make_executable on Windows
 
 0.009     2011-08-24 17:30:00 Europe/Amsterdam
           Fixed failing test on Windows

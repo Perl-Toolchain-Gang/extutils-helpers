@@ -10,6 +10,7 @@ use Pod::Man;
 use Module::Load;
 
 our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename manify man3_pagename/;
+our $VERSION = 0.010;
 
 BEGIN {
 	my $package = "ExtUtils::Helpers::" . ($^O eq 'MSWin32' ? 'Windows' : 'Unix');

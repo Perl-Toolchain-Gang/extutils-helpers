@@ -8,20 +8,13 @@ our @EXPORT = qw/make_executable split_like_shell/;
 use Text::ParseWords 3.24 qw/shellwords/;
 use ExtUtils::MakeMaker;
 
-sub _make_executable {
-  # Perl's chmod() is mapped to useful things on various non-Unix
-  # platforms, so we use it everywhere even though it looks
-  # Unixish.
-
-  foreach (@_) {
-    my $current_mode = (stat $_)[2];
-    chmod $current_mode | oct(111), $_;
-  }
-}
-
 sub make_executable {
-	ExtUtils::MM->fixin($_) for grep { -T } @_;
-	goto &_make_executable
+	my @files = @_;
+	foreach my $file (@files) {
+		my $current_mode = (stat $file)[2] + 0;
+		ExtUtils::MM->fixin($file) if -T $file;
+		chmod $current_mode | oct(111), $file;
+	}
 };
 
 sub split_like_shell {
