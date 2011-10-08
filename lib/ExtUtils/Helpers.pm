@@ -7,14 +7,15 @@ use File::Basename qw/basename dirname/;
 use File::Path qw/mkpath/;
 use File::Spec::Functions qw/splitpath splitdir canonpath/;
 use Pod::Man;
-use Module::Load;
+
+use ExtUtils::Helpers::Unix ();
+use ExtUtils::Helpers::Windows ();
 
 our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename manify man3_pagename/;
 our $VERSION = 0.010;
 
 BEGIN {
 	my $package = "ExtUtils::Helpers::" . ($^O eq 'MSWin32' ? 'Windows' : 'Unix');
-	load($package);
 	$package->import();
 }
 
