@@ -28,9 +28,9 @@ sub split_like_shell {
 
 1;
 
-__END__
-
 # ABSTRACT: Unix specific helper bits
+
+__END__
 
 =begin Pod::Coverage
 

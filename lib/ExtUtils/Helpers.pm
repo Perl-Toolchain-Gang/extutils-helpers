@@ -56,9 +56,9 @@ sub manify {
 
 1;
 
-__END__
-
 # ABSTRACT: Various portability utilities for module builders
+
+__END__
 
 =head1 SYNOPSIS
 
