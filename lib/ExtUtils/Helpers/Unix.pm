@@ -9,13 +9,12 @@ use Text::ParseWords 3.24 qw/shellwords/;
 use ExtUtils::MakeMaker;
 
 sub make_executable {
-	my @files = @_;
-	foreach my $file (@files) {
-		my $current_mode = (stat $file)[2] + 0;
-		ExtUtils::MM->fixin($file) if -T $file;
-		chmod $current_mode | oct(111), $file;
-	}
-};
+	my $file = shift;
+	my $current_mode = (stat $file)[2] + 0;
+	ExtUtils::MM->fixin($file) if -T $file;
+	chmod $current_mode | oct(111), $file;
+	return;
+}
 
 sub split_like_shell {
   my ($string) = @_;

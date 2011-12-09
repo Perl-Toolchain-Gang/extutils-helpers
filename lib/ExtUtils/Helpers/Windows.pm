@@ -8,16 +8,14 @@ our @EXPORT = qw/make_executable split_like_shell/;
 use Config;
 
 sub make_executable {
-  foreach my $script (@_) {
-    if (-T $script) {
-      # Skip native batch script
-      next if $script =~ /\.(bat|cmd)$/;
-      my $out = eval { _pl2bat(in => $script, update => 1) };
-      if ($@) {
-        warn "WARNING: Unable to convert file '$script' to an executable script:\n$@";
-      }
+  my $script = shift;
+  if (-T $script && $script !~ /\.(bat|cmd)$/) {
+    my $out = eval { _pl2bat(in => $script, update => 1) };
+    if ($@) {
+      warn "WARNING: Unable to convert file '$script' to an executable script:\n$@";
     }
   }
+  return;
 }
 
 # Inspired from pl2bat, but fixed:
