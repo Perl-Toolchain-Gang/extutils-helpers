@@ -3,15 +3,14 @@ use strict;
 use warnings FATAL => 'all';
 use Exporter 5.57 'import';
 
-use File::Basename qw/basename dirname/;
-use File::Path qw/mkpath/;
+use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath splitdir canonpath/;
 use Pod::Man;
 
 use ExtUtils::Helpers::Unix ();
 use ExtUtils::Helpers::Windows ();
 
-our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename manify man3_pagename/;
+our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename/;
 our $VERSION = 0.010;
 
 BEGIN {
@@ -43,15 +42,6 @@ sub man3_pagename {
 	shift @dirs if $dirs[0] eq 'lib';
 	my $separator = $separator{$^O} || '::';
 	return join $separator, @dirs, "$file.3pm";
-}
-
-sub manify {
-	my ($input_file, $output_file, $section, $opts) = @_;
-	my $dirname = dirname($output_file);
-	mkpath($dirname, $opts->{verbose}) if not -d $dirname;
-	Pod::Man->new(section => $section)->parse_from_file($input_file, $output_file);
-	print "Manifying $output_file\n" if $opts->{verbose} && $opts->{verbose} > 0;
-	return;
 }
 
 1;
