@@ -86,4 +86,8 @@ Returns the man page filename for a Perl library.
 
 Create a manpage for the script in C<$input_filename> as C<$output_file> in section C<$section>
 
+=head1 ACKNOWLEDGEMENTS
+
+Olivier Mengué made C<make_executable> work on Windows.
+
 =cut
