@@ -18,10 +18,6 @@ BEGIN {
 	$package->import();
 }
 
-sub build_script {
-	return $^O eq 'VMS' ? 'Build.com' : 'Build';
-}
-
 sub man1_pagename {
 	my $filename = shift;
 	return basename($filename).'.1';
@@ -55,8 +51,8 @@ __END__
  use ExtUtils::Helpers qw/build_script make_executable split_like_shell/;
 
  unshift @ARGV, split_like_shell($ENV{PROGRAM_OPTS});
- write_script_to(build_script());
- make_executable(build_script());
+ write_script_to('Build');
+ make_executable('Build');
 
 =head1 DESCRIPTION
 

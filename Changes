@@ -2,6 +2,7 @@ Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
           Move manify to Module::Build::Tiny
+          Refactored VMS support
           Make EU::H easier to embed in inc/
 
 0.010     2011-09-21 20:08:58 Europe/Amsterdam
