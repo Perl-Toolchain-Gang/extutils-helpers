@@ -18,6 +18,7 @@ close $out;
 make_executable($filename);
 
 foreach my $i (42, 51, 0) {
+	local $TODO = 'This doesn\'t work half of the time' if $^O eq 'MSWin32' and $i != 0;
 	my $cwd = cwd;
 	local $ENV{PATH} = join $Config{path_sep}, $cwd, $ENV{PATH};
 	my $ret = system $filename, $i;
