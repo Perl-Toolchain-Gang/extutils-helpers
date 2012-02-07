@@ -1,6 +1,9 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.012     2012-02-07 14:04:33 Europe/Amsterdam
+          Added detildefy
           Fix up loading on VMS
 
 0.011     2012-01-09 22:42:01 Europe/Amsterdam
