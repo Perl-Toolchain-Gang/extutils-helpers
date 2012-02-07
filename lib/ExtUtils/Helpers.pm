@@ -9,11 +9,13 @@ use Pod::Man;
 
 use ExtUtils::Helpers::Unix ();
 use ExtUtils::Helpers::Windows ();
+use ExtUtils::Helpers::VMS ();
 
 our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename/;
 
 BEGIN {
-	my $package = "ExtUtils::Helpers::" . ($^O eq 'MSWin32' ? 'Windows' : 'Unix');
+	my %impl_for = ( MSWin32 => 'Windows', VMS => 'VMS');
+	my $package = "ExtUtils::Helpers::" . ($impl_for{$^O} || 'Unix');
 	$package->import();
 }
 
@@ -28,6 +30,7 @@ my %separator = (
 	os2 => '.',
 	cygwin => '.',
 );
+my $separator = $separator{$^O} || '::';
 
 sub man3_pagename {
 	my $filename = shift;
@@ -35,7 +38,6 @@ sub man3_pagename {
 	$file = basename($file, qw/.pm .pod/);
 	my @dirs = grep { length } splitdir($dirs);
 	shift @dirs if $dirs[0] eq 'lib';
-	my $separator = $separator{$^O} || '::';
 	return join $separator, @dirs, "$file.3pm";
 }
 

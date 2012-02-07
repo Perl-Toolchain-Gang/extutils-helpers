@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Fix up loading on VMS
 
 0.011     2012-01-09 22:42:01 Europe/Amsterdam
           Move manify to Module::Build::Tiny
