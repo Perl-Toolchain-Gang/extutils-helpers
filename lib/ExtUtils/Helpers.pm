@@ -11,7 +11,7 @@ use ExtUtils::Helpers::Unix ();
 use ExtUtils::Helpers::Windows ();
 use ExtUtils::Helpers::VMS ();
 
-our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename/;
+our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename detildefy/;
 
 BEGIN {
 	my %impl_for = ( MSWin32 => 'Windows', VMS => 'VMS');
@@ -70,6 +70,10 @@ This makes a perl script executable.
 =func split_like_shell($string)
 
 This function splits a string the same way as the local platform does.
+
+=func detildefy($path)
+
+This function substitutes a tilde at the start of a path with the users homedir in an appropriate manner.
 
 =func man1_pagename($filename)
 

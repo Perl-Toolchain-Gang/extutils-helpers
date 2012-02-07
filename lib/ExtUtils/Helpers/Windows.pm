@@ -3,7 +3,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Exporter 5.57 'import';
-our @EXPORT = qw/make_executable split_like_shell/;
+our @EXPORT = qw/make_executable split_like_shell detildefy/;
 
 use Config;
 
@@ -156,6 +156,12 @@ sub split_like_shell {
 	return @argv;
 }
 
+sub detildefy {
+	my $value = shift;
+	$value =~ s{ ^ ~ (?= [/\\] | $ ) }[$ENV{HOME}]x if $ENV{HOME};
+	return $value;
+}
+
 1;
 
 # ABSTRACT: Windows specific helper bits
@@ -164,6 +170,7 @@ sub split_like_shell {
 
 make_executable
 split_like_shell
+detildefy
 
 =end Pod::Coverage
 
