@@ -8,8 +8,6 @@ use Test::More tests => 9;
 
 use ExtUtils::Helpers 'detildefy';
 
-my $p = 'install_base';
-
 SKIP: {
 	my $home = $ENV{HOME} ? $ENV{HOME} : undef;
 
@@ -21,7 +19,7 @@ SKIP: {
 
 	unless (defined $home) {
 		my @info = eval { getpwuid $> };
-		skip "No home directory for tilde-expansion tests", 15 if $@ or !defined $info[7];
+		skip "No home directory for tilde-expansion tests", 8 if $@ or !defined $info[7];
 		$home = $info[7];
 	}
 
