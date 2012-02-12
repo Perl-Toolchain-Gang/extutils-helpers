@@ -9,7 +9,7 @@ use Test::More tests => 9;
 use ExtUtils::Helpers 'detildefy';
 
 SKIP: {
-	my $home = $ENV{HOME} ? $ENV{HOME} : undef;
+	my $home = $ENV{HOME} || $ENV{USERPROFILE} || undef;
 
 	if ($^O eq 'VMS') {
 		# Convert the path to UNIX format, trim off the trailing slash
@@ -36,6 +36,7 @@ SKIP: {
 	# Test when HOME is different from getpwuid(), as in sudo.
 	{
 		local $ENV{HOME} = '/wibble/whomp';
+		local $ENV{USERPROFILE} = $ENV{HOME};
 
 		is( detildefy('~'), "/wibble/whomp");
 	}

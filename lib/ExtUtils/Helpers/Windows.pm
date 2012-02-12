@@ -158,7 +158,7 @@ sub split_like_shell {
 
 sub detildefy {
 	my $value = shift;
-	$value =~ s{ ^ ~ (?= [/\\] | $ ) }[$ENV{HOME}]x if $ENV{HOME};
+	$value =~ s{ ^ ~ (?= [/\\] | $ ) }[$ENV{USERPROFILE}]x if $ENV{USERPROFILE};
 	return $value;
 }
 
