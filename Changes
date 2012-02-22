@@ -2,6 +2,9 @@ Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
 
+0.014     2012-02-22 21:42:35 Europe/Amsterdam
+          Remove detildefication, defer to File::HomeDir to do it better
+
 0.013     2012-02-13 00:35:33 Europe/Amsterdam
           Do tilde expansion more sensibly on Windows
 
