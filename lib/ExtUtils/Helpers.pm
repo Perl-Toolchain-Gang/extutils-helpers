@@ -6,16 +6,14 @@ use Exporter 5.57 'import';
 use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath canonpath abs2rel/;
 use Pod::Man;
-
-use ExtUtils::Helpers::Unix ();
-use ExtUtils::Helpers::Windows ();
-use ExtUtils::Helpers::VMS ();
+use Module::Load;
 
 our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename/;
 
 BEGIN {
 	my %impl_for = ( MSWin32 => 'Windows', VMS => 'VMS');
 	my $package = "ExtUtils::Helpers::" . ($impl_for{$^O} || 'Unix');
+	load($package);
 	$package->import();
 }
 
