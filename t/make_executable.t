@@ -12,7 +12,7 @@ my $filename = 'test_exec';
 my @files;
 
 open my $out, '>', $filename or die "Couldn't create $filename: $!";
-print $out "#! perl \nexit \$ARGV[0];\n";
+print $out "#! perl -w\nexit \$ARGV[0];\n";
 close $out;
 
 make_executable($filename);
