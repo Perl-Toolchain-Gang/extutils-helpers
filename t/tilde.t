@@ -9,7 +9,7 @@ use Test::More tests => 9;
 use ExtUtils::Helpers 'detildefy';
 
 SKIP: {
-	my $home = $ENV{HOME} || $ENV{USERPROFILE} || undef;
+	my $home = $ENV{USERPROFILE} || $ENV{HOME} || undef;
 
 	if ($^O eq 'VMS') {
 		# Convert the path to UNIX format, trim off the trailing slash
