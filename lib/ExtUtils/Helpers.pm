@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 use Exporter 5.57 'import';
 
 use File::Basename qw/basename/;
-use File::Spec::Functions qw/splitpath splitdir canonpath/;
+use File::Spec::Functions qw/splitpath canonpath abs2rel/;
 use Pod::Man;
 
 use ExtUtils::Helpers::Unix ();
@@ -33,12 +33,12 @@ my %separator = (
 my $separator = $separator{$^O} || '::';
 
 sub man3_pagename {
-	my $filename = shift;
+	my ($filename, $base) = @_;
+	$base ||= 'lib';
 	my ($vols, $dirs, $file) = splitpath(canonpath($filename));
 	$file = basename($file, qw/.pm .pod/);
-	my @dirs = grep { length } splitdir($dirs);
-	shift @dirs if $dirs[0] eq 'lib';
-	return join $separator, @dirs, "$file.3pm";
+	$dirs = abs2rel($dirs, $base);
+	return join $separator, $dirs, "$file.3pm";
 }
 
 1;
@@ -75,7 +75,7 @@ This function splits a string the same way as the local platform does.
 
 Returns the man page filename for a script.
 
-=func man3_pagename($filename)
+=func man3_pagename($filename, $basedir)
 
 Returns the man page filename for a Perl library.
 
