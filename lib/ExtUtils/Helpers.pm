@@ -43,7 +43,7 @@ sub man3_pagename {
 
 # ABSTRACT: Various portability utilities for module builders
 
-__END__
+=encoding utf-8
 
 =head1 SYNOPSIS
 
