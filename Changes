@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.016     2013-04-12 15:39:01 Europe/London
           Add some fixes to batch file generation [Christian Walde]
 
 0.015     2013-04-09 15:01:04 Europe/Amsterdam
