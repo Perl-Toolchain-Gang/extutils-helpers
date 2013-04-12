@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Add some fixes to batch file generation [Christian Walde]
 
 0.015     2013-04-09 15:01:04 Europe/Amsterdam
           Made man3_pagename more flexible with paths
