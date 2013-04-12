@@ -42,9 +42,11 @@ sub _pl2bat {
     \@echo off
     if "%OS%" == "Windows_NT" goto WinNT
     perl $opts{otherargs}
+	\@set ErrorLevel=%ErrorLevel%
     goto endofperl
     :WinNT
     perl $opts{ntargs}
+	\@set ErrorLevel=%ErrorLevel%
     if NOT "%COMSPEC%" == "%SystemRoot%\\system32\\cmd.exe" goto endofperl
     if %errorlevel% == 9009 echo You do not have Perl in your PATH.
     goto endofperl
@@ -53,7 +55,12 @@ EOT
 
 	$head =~ s/^\s+//gm;
 	my $headlines = 2 + ($head =~ tr/\n/\n/);
-	my $tail = "\n__END__\n:endofperl\n";
+	my $tail = <<EOT;
+	__END__
+	:endofperl
+	@"%COMSPEC%" /c exit /b %ErrorLevel%
+EOT
+	$tail =~ s/^\s+//gm;
 
 	my $linedone	= 0;
 	my $taildone	= 0;
