@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Don't load Pod::Man
 
 0.017     2013-04-15 14:57:34 Europe/Amsterdam
           Fix man3_pagename to properly split dirs

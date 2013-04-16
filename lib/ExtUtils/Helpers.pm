@@ -5,7 +5,6 @@ use Exporter 5.57 'import';
 
 use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath canonpath abs2rel splitdir/;
-use Pod::Man;
 use Module::Load;
 
 our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename detildefy/;
