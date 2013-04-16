@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.018     2013-04-16 13:51:42 Europe/Amsterdam
           Don't load Pod::Man
 
 0.017     2013-04-15 14:57:34 Europe/Amsterdam
