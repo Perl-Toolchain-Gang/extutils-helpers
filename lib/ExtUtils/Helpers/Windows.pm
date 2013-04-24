@@ -26,7 +26,7 @@ sub _pl2bat {
 	my %opts = @_;
 
 	# NOTE: %0 is already enclosed in doublequotes by cmd.exe, as appropriate
-	$opts{ntargs}	 = '-x -S %0 %*';
+	$opts{ntargs}    = '-x -S %0 %*';
 	$opts{otherargs} = '-x -S "%0" %1 %2 %3 %4 %5 %6 %7 %8 %9';
 
 	$opts{stripsuffix} = qr/\.plx?/ unless exists $opts{stripsuffix};
@@ -37,20 +37,20 @@ sub _pl2bat {
 		$opts{out} .= '.bat' unless $opts{in} =~ /\.bat$/i or $opts{in} =~ /^-$/;
 	}
 
-  my $head = <<EOT;
-    \@rem = '--*-Perl-*--
-    \@echo off
-    if "%OS%" == "Windows_NT" goto WinNT
-    perl $opts{otherargs}
+	my $head = <<EOT;
+	\@rem = '--*-Perl-*--
+	\@echo off
+	if "%OS%" == "Windows_NT" goto WinNT
+	perl $opts{otherargs}
 	\@set ErrorLevel=%ErrorLevel%
-    goto endofperl
-    :WinNT
-    perl $opts{ntargs}
+	goto endofperl
+	:WinNT
+	perl $opts{ntargs}
 	\@set ErrorLevel=%ErrorLevel%
-    if NOT "%COMSPEC%" == "%SystemRoot%\\system32\\cmd.exe" goto endofperl
-    if %errorlevel% == 9009 echo You do not have Perl in your PATH.
-    goto endofperl
-    \@rem ';
+	if NOT "%COMSPEC%" == "%SystemRoot%\\system32\\cmd.exe" goto endofperl
+	if %errorlevel% == 9009 echo You do not have Perl in your PATH.
+	goto endofperl
+	\@rem ';
 EOT
 
 	$head =~ s/^\s+//gm;
@@ -62,9 +62,9 @@ EOT
 EOT
 	$tail =~ s/^\s+//gm;
 
-	my $linedone	= 0;
-	my $taildone	= 0;
-	my $linenum	 = 0;
+	my $linedone = 0;
+	my $taildone = 0;
+	my $linenum = 0;
 	my $skiplines = 0;
 
 	my $start = $Config{startperl};
@@ -127,7 +127,7 @@ sub split_like_shell {
 
 	while ( $i < length ) {
 
-		my $ch			= substr $_, $i	, 1;
+		my $ch      = substr $_, $i, 1;
 		my $next_ch = substr $_, $i+1, 1;
 
 		if ( $ch eq '\\' && $next_ch eq '"' ) {
@@ -141,8 +141,7 @@ sub split_like_shell {
 			$arg .= '"';
 			$i++;
 		} elsif ( $ch eq '"' && $next_ch eq '"' && !$quote_mode &&
-				( $i + 2 == length()	||
-		substr( $_, $i + 2, 1 ) eq ' ' )
+				( $i + 2 == length() || substr( $_, $i + 2, 1 ) eq ' ' )
 			) { # for cases like: a"" => [ 'a' ]
 			push @argv, $arg;
 			$arg = '';

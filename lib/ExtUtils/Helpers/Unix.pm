@@ -29,13 +29,13 @@ sub make_executable {
 }
 
 sub split_like_shell {
-  my ($string) = @_;
+	my ($string) = @_;
 
-  return if not defined $string;
-  $string =~ s/^\s+|\s+$//g;
-  return if not length $string;
+	return if not defined $string;
+	$string =~ s/^\s+|\s+$//g;
+	return if not length $string;
 
-  return shellwords($string);
+	return shellwords($string);
 }
 
 sub detildefy {
