@@ -15,7 +15,7 @@ sub make_executable {
 	if (-T $filename) {
 		open my $fh, '<:raw', $filename;
 		my @lines = <$fh>;
-		if (@lines and $lines[0] =~ s/ \A \#! \s* perl (.*) \z /$Config{startperl}$1/xms) {
+		if (@lines and $lines[0] =~ s{ \A \#! \s* (?:/\S+/)? perl \b (.*) \z }{$Config{startperl}$1}xms) {
 			open my $out, '>:raw', "$filename.new" or croak "Couldn't open $filename.new: $!";
 			print $out @lines;
 			close $out;
