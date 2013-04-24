@@ -6,13 +6,14 @@ use Exporter 5.57 'import';
 our @EXPORT = qw/make_executable split_like_shell detildefy/;
 
 use Config;
+use Carp qw/carp croak/;
 
 sub make_executable {
 	my $script = shift;
-	if (-T $script && $script !~ /\.(bat|cmd)$/) {
+	if (-T $script && $script !~ / \. (?:bat|cmd) $ /x) {
 		my $out = eval { _pl2bat(in => $script, update => 1) };
 		if ($@) {
-			warn "WARNING: Unable to convert file '$script' to an executable script:\n$@";
+			carp "WARNING: Unable to convert file '$script' to an executable script:\n$@";
 		}
 	}
 	return;
@@ -31,13 +32,13 @@ sub _pl2bat {
 
 	$opts{stripsuffix} = qr/\.plx?/ unless exists $opts{stripsuffix};
 
-	unless (exists $opts{out}) {
+	if (not exists $opts{out}) {
 		$opts{out} = $opts{in};
 		$opts{out} =~ s/$opts{stripsuffix}$//i;
-		$opts{out} .= '.bat' unless $opts{in} =~ /\.bat$/i or $opts{in} =~ /^-$/;
+		$opts{out} .= '.bat' unless $opts{in} =~ /\.bat$/i or $opts{in} eq '-';
 	}
 
-	my $head = <<EOT;
+	my $head = <<"EOT";
 	\@rem = '--*-Perl-*--
 	\@echo off
 	if "%OS%" == "Windows_NT" goto WinNT
@@ -55,7 +56,7 @@ EOT
 
 	$head =~ s/^\s+//gm;
 	my $headlines = 2 + ($head =~ tr/\n/\n/);
-	my $tail = <<EOT;
+	my $tail = <<'EOT';
 	__END__
 	:endofperl
 	@"%COMSPEC%" /c exit /b %ErrorLevel%
@@ -68,9 +69,9 @@ EOT
 	my $skiplines = 0;
 
 	my $start = $Config{startperl};
-	$start = "#!perl" unless $start =~ /^#!.*perl/;
+	$start = '#!perl' unless $start =~ /^#!.*perl/;
 
-	open my $in, '<', $opts{in} or die "Can't open $opts{in}: $!";
+	open my $in, '<', $opts{in} or croak "Can't open $opts{in}: $!";
 	my @file = <$in>;
 	close $in;
 
@@ -86,20 +87,20 @@ EOT
 		if ( not $linedone and $line =~ /^#!.*perl/ ) {
 			if (exists $opts{update}) {
 				$skiplines = $linenum - 1;
-				$line .= "#line ".(1+$headlines)."\n";
+				$line .= '#line '.(1+$headlines)."\n";
 			} else {
-	$line .= "#line ".($linenum+$headlines)."\n";
+	$line .= '#line '.($linenum+$headlines)."\n";
 			}
 	$linedone++;
 		}
 		if ( $line =~ /^#\s*line\b/ and $linenum == 2 + $skiplines ) {
-			$line = "";
+			$line = '';
 		}
 	}
 
-	open my $out, '>', $opts{out} or die or die "Can't open $opts{out}: $!";
+	open my $out, '>', $opts{out} or croak "Can't open $opts{out}: $!";
 	print $out $head;
-	print $out $start, ( $opts{usewarnings} ? " -w" : "" ),
+	print $out $start, ( $opts{usewarnings} ? ' -w' : '' ),
 						 "\n#line ", ($headlines+1), "\n" unless $linedone;
 	print $out @file[$skiplines..$#file];
 	print $out $tail unless $taildone;

@@ -11,7 +11,7 @@ our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename 
 
 BEGIN {
 	my %impl_for = ( MSWin32 => 'Windows', VMS => 'VMS');
-	my $package = "ExtUtils::Helpers::" . ($impl_for{$^O} || 'Unix');
+	my $package = 'ExtUtils::Helpers::' . ($impl_for{$^O} || 'Unix');
 	load($package);
 	$package->import();
 }
