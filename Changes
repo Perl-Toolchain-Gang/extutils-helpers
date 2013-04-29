@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.020     2013-04-29 14:14:20 Europe/Amsterdam
           Fix man3_pagename for top level domains
 
 0.019     2013-04-24 13:24:50 Europe/Amsterdam
