@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Fix man3_pagename for top level domains
 
 0.019     2013-04-24 13:24:50 Europe/Amsterdam
           Fix make_executable for '#!/usr/bin/perl'

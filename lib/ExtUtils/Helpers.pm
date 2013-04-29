@@ -32,10 +32,10 @@ my $separator = $separator{$^O} || '::';
 sub man3_pagename {
 	my ($filename, $base) = @_;
 	$base ||= 'lib';
-	my ($vols, $dirs, $file) = splitpath(canonpath($filename));
+	my ($vols, $dirs, $file) = splitpath(canonpath(abs2rel($filename, $base)));
 	$file = basename($file, qw/.pm .pod/);
-	$dirs = abs2rel($dirs, $base);
-	return join $separator, splitdir($dirs), "$file.3pm";
+	my @dirs = grep { length } splitdir($dirs);
+	return join $separator, @dirs, "$file.3pm";
 }
 
 1;
