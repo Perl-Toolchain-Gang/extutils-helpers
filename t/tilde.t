@@ -9,7 +9,8 @@ use Test::More tests => 9;
 use ExtUtils::Helpers 'detildefy';
 
 SKIP: {
-	my $home = $ENV{USERPROFILE} || $ENV{HOME} || undef;
+	my $env_name = $^O eq 'MSWin32' ? 'USERPROFILE' : 'HOME';
+	my $home = $ENV{$env_name};
 
 	if ($^O eq 'VMS') {
 		# Convert the path to UNIX format, trim off the trailing slash
