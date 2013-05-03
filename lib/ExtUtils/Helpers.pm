@@ -3,6 +3,7 @@ use strict;
 use warnings FATAL => 'all';
 use Exporter 5.57 'import';
 
+use Config;
 use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath canonpath abs2rel splitdir/;
 use Module::Load;
@@ -18,7 +19,7 @@ BEGIN {
 
 sub man1_pagename {
 	my $filename = shift;
-	return basename($filename).'.1';
+	return basename($filename).".$Config{man1ext}";
 }
 
 my %separator = (
@@ -35,7 +36,7 @@ sub man3_pagename {
 	my ($vols, $dirs, $file) = splitpath(canonpath(abs2rel($filename, $base)));
 	$file = basename($file, qw/.pm .pod/);
 	my @dirs = grep { length } splitdir($dirs);
-	return join $separator, @dirs, "$file.3pm";
+	return join $separator, @dirs, "$file.$Config{man3ext}";
 }
 
 1;
