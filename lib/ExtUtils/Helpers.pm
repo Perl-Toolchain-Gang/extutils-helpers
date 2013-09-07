@@ -6,6 +6,7 @@ use Exporter 5.57 'import';
 use Config;
 use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath canonpath abs2rel splitdir/;
+use ExtUtils::ShellLike qw/split_like_shell detildefy/;
 use Module::Load;
 
 our @EXPORT_OK = qw/make_executable split_like_shell man1_pagename man3_pagename detildefy/;
