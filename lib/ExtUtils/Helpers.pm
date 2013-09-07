@@ -81,10 +81,6 @@ Returns the man page filename for a script.
 
 Returns the man page filename for a Perl library.
 
-=func manify($input_filename, $output_file, $section, $opts)
-
-Create a manpage for the script in C<$input_filename> as C<$output_file> in section C<$section>
-
 =head1 ACKNOWLEDGEMENTS
 
 Olivier Mengué and Christian Walde made C<make_executable> work on Windows.
