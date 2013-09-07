@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Cleaned up remains of former functions
 
 0.021     2013-05-06 14:57:29 Europe/Amsterdam
           Always use the right environmental variable

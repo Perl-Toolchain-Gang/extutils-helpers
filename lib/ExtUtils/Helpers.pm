@@ -8,7 +8,7 @@ use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath canonpath abs2rel splitdir/;
 use Module::Load;
 
-our @EXPORT_OK = qw/build_script make_executable split_like_shell man1_pagename man3_pagename detildefy/;
+our @EXPORT_OK = qw/make_executable split_like_shell man1_pagename man3_pagename detildefy/;
 
 BEGIN {
 	my %impl_for = ( MSWin32 => 'Windows', VMS => 'VMS');
@@ -47,7 +47,7 @@ sub man3_pagename {
 
 =head1 SYNOPSIS
 
- use ExtUtils::Helpers qw/build_script make_executable split_like_shell/;
+ use ExtUtils::Helpers qw/make_executable split_like_shell/;
 
  unshift @ARGV, split_like_shell($ENV{PROGRAM_OPTS});
  write_script_to('Build');
@@ -56,10 +56,6 @@ sub man3_pagename {
 =head1 DESCRIPTION
 
 This module provides various portable helper functions for module building modules.
-
-=func build_script()
-
-This function returns the appropriate name for the Build script on the local platform.
 
 =func make_executable($filename)
 
