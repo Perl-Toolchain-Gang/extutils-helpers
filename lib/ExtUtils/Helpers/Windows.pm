@@ -11,10 +11,7 @@ use Carp qw/carp croak/;
 sub make_executable {
 	my $script = shift;
 	if (-T $script && $script !~ / \. (?:bat|cmd) $ /x) {
-		my $out = eval { _pl2bat(in => $script, update => 1) };
-		if ($@) {
-			carp "WARNING: Unable to convert file '$script' to an executable script:\n$@";
-		}
+		_pl2bat(in => $script, update => 1);
 	}
 	return;
 }
