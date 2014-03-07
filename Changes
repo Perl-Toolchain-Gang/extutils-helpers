@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.022     2014-03-07 13:27:09CET+0100 Europe/Amsterdam
           Cleaned up remains of former functions
           Skip IO layers on <5.8 for 5.6 compatability
           Don't swallow pl2bat exceptions
