@@ -2,7 +2,7 @@
 
 use strict;
 use warnings FATAL => 'all';
-use Test::More;
+use Test::More 0.88;
 use Config;
 use File::Spec::Functions qw/catfile/;
 use ExtUtils::Helpers qw/man1_pagename man3_pagename/;
