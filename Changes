@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          Remove done_testing, it requires Test::More 0.88
 
 0.022     2014-03-07 13:27:09CET+0100 Europe/Amsterdam
           Cleaned up remains of former functions
