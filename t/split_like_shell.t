@@ -77,7 +77,6 @@ sub do_split_tests {
 	my ($string, $expected) = %$test;
 	my @result = split_like_shell($string);
 	$string =~ s/\n/\\n/g;
-	is(grep( !defined(), @result ), 0, "\"$string\" result all defined");
-	is_deeply(\@result, $expected) or
-	diag("split_like_shell error \n>$string< is not splitting as >" . join("|", @$expected) . '<');
+	is(grep( !defined(), @result ), 0, "[$string] result all defined");
+	is(join(',', map "[$_]", @result), join(',', map "[$_]", @$expected));
 }
