@@ -126,7 +126,15 @@ sub split_like_shell {
 		my $quote_mode;
 		my $arg = '';
 		CHAR: until ( pos == length ) {
-			if ( m/\G\\([\\|"])/gc ) {
+			if ( m/\G((?:\\\\)+)(?=\\?(")?)/gc ) {
+				if (defined $2) {
+					$arg .= '\\' x (length($1) / 2);
+				}
+				else {
+					$arg .= $1;
+				}
+			}
+			elsif ( m/\G\\([\\|"])/gc ) {
 				$arg .= $1;
 			}
 			elsif ( $quote_mode && m/\G""/gc ) {
