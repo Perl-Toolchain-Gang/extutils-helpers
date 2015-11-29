@@ -56,6 +56,16 @@ my @win_splits =
    { 'a "" b'               => [ 'a', '', 'b'    ] },
    { 'a " " b'              => [ 'a', ' ', 'b'   ] },
    { 'a " b " c'            => [ 'a', ' b ', 'c' ] },
+   { 'a "0" c'              => [ 'a', '0', 'c'   ] },
+   { '"a\\b"'               => [ 'a\\b'          ] },
+   { '"a\\\\b"'             => [ 'a\\\\b'        ] },
+   { '"a\\\\\\b"'           => [ 'a\\\\\\b'      ] },
+   { '"a\\\\\\\\b"'         => [ 'a\\\\\\\\b'    ] },
+   { '"a\\"'                => [ 'a"'            ] },
+   { '"a\\\\"'              => [ 'a\\'           ] },
+   { '"a\\\\\\"'            => [ 'a\\"'          ] },
+   { '"a\\\\\\\\"'          => [ 'a\\\\'         ] },
+   { '"a\\\\\\""'           => [ 'a\\"'          ] },
 );
 
 if ($^O eq 'MSWin32') {
@@ -77,7 +87,6 @@ sub do_split_tests {
 	my ($string, $expected) = %$test;
 	my @result = split_like_shell($string);
 	$string =~ s/\n/\\n/g;
-	is(grep( !defined(), @result ), 0, "\"$string\" result all defined");
-	is_deeply(\@result, $expected) or
-	diag("split_like_shell error \n>$string< is not splitting as >" . join("|", @$expected) . '<');
+	is(grep( !defined(), @result ), 0, "[$string] result all defined");
+	is(join(',', map "[$_]", @result), join(',', map "[$_]", @$expected));
 }
