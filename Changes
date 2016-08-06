@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          - Move pl2bat code to ExtUtils::PL2Bat
 
 0.023     2016-08-06 20:52:34+02:00 Europe/Amsterdam (TRIAL RELEASE)
           - Make split_like_shell always unixy
