@@ -6,15 +6,15 @@ use Exporter 5.57 'import';
 use Config;
 use File::Basename qw/basename/;
 use File::Spec::Functions qw/splitpath canonpath abs2rel splitdir/;
-use Module::Load;
 
 our @EXPORT_OK = qw/make_executable split_like_shell man1_pagename man3_pagename detildefy/;
 
 BEGIN {
 	my %impl_for = ( MSWin32 => 'Windows', VMS => 'VMS');
 	my $package = 'ExtUtils::Helpers::' . ($impl_for{$^O} || 'Unix');
-	load($package);
-	$package->import();
+	my $impl = $impl_for{$^O} || 'Unix';
+	require "ExtUtils/Helpers/$impl.pm";
+	"ExtUtils::Helpers::$impl"->import();
 }
 
 sub man1_pagename {
