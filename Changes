@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.023     2016-08-06 20:52:34+02:00 Europe/Amsterdam (TRIAL RELEASE)
           Remove done_testing, it requires Test::More 0.88
 
 0.022     2014-03-07 13:27:09CET+0100 Europe/Amsterdam
