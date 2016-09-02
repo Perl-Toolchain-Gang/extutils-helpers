@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.025     2016-09-02 09:48:38+02:00 Europe/Amsterdam
           - Remove unconditional dependency on ExtUtils::PL2Bat
 
 0.024     2016-08-16 22:02:31+02:00 Europe/Amsterdam (TRIAL RELEASE)
