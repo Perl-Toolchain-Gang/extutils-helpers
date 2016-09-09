@@ -1,6 +1,8 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+
+0.026     2016-09-09 19:26:57+02:00 Europe/Amsterdam
           - Fix Win32 dependency
 
 0.025     2016-09-02 09:48:38+02:00 Europe/Amsterdam
