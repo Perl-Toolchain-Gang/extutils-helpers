@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
 {{$NEXT}}
+          - Fix Win32 dependency
 
 0.025     2016-09-02 09:48:38+02:00 Europe/Amsterdam
           - Remove unconditional dependency on ExtUtils::PL2Bat
