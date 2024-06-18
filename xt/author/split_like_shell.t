@@ -3,7 +3,10 @@
 use strict;
 use warnings FATAL => 'all';
 use Test::More;
-use ExtUtils::Helpers qw/split_like_shell/;
+use ExtUtils::Helpers::Unix ();
+use ExtUtils::Helpers::Windows ();
+
+plan(skip_all => 'Author only tests') unless $ENV{AUTHOR_TESTING};
 
 my @unix_splits =
   (
@@ -58,26 +61,21 @@ my @win_splits =
    { 'a " b " c'            => [ 'a', ' b ', 'c' ] },
 );
 
-if ($^O eq 'MSWin32') {
-	plan tests => 2 * @win_splits;
-	foreach my $test (@win_splits) {
-		do_split_tests($test);
-	}
-}
-else {
-	plan tests => 2 * @unix_splits;
-	foreach my $test (@unix_splits) {
-		do_split_tests($test);
-	}
-}
-
-sub do_split_tests {
-	my ($test) = @_;
-
+foreach my $test (@win_splits) {
 	my ($string, $expected) = %$test;
-	my @result = split_like_shell($string);
+	my @result = ExtUtils::Helpers::Windows::split_like_shell($string);
 	$string =~ s/\n/\\n/g;
 	is(grep( !defined(), @result ), 0, "\"$string\" result all defined");
 	is_deeply(\@result, $expected) or
 	diag("split_like_shell error \n>$string< is not splitting as >" . join("|", @$expected) . '<');
 }
+foreach my $test (@unix_splits) {
+	my ($string, $expected) = %$test;
+	my @result = ExtUtils::Helpers::Unix::split_like_shell($string);
+	$string =~ s/\n/\\n/g;
+	is(grep( !defined(), @result ), 0, "\"$string\" result all defined");
+	is_deeply(\@result, $expected) or
+	diag("split_like_shell error \n>$string< is not splitting as >" . join("|", @$expected) . '<');
+}
+
+done_testing;

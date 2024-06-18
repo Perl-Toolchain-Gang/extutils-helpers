@@ -1,6 +1,7 @@
 Revision history for ExtUtils-Helpers
 
-{{$NEXT}}
+{{$NEXT}}A
+          - Revert "Make split_like_shell always unixy"
 
 0.026     2016-09-09 19:26:57+02:00 Europe/Amsterdam
           - Fix Win32 dependency

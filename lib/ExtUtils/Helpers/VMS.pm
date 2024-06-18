@@ -4,8 +4,9 @@ use strict;
 use warnings FATAL => 'all';
 
 use Exporter 5.57 'import';
-our @EXPORT = qw/make_executable detildefy/;
+our @EXPORT = qw/make_executable split_like_shell detildefy/;
 
+use ExtUtils::Helpers::Unix qw/split_like_shell/; # Probably very wrong, but whatever
 use File::Copy qw/copy/;
 
 sub make_executable {
